@@ -1,0 +1,27 @@
+{
+  "id": "explanation/business-domains",
+  "title": "Business Domains and the Gold layer",
+  "description": "The core of FMD is one shared machine: one set of pipelines, one configuration database, one Landing Zone, one Bronze and one Silver lakehouse, described in how data moves through FMD. That machine is deliberately business-agnostic. It ingests, hashes, cleanses and historises whatever entities you register, and it has no opinion at all about what \"a customer\" or \"an order\" means.",
+  "source": "@site/docs/04-explanation/05-business-domains.md",
+  "sourceDirName": "04-explanation",
+  "slug": "/explanation/business-domains",
+  "permalink": "/docs/explanation/business-domains",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/04-explanation/05-business-domains.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "title": "Business Domains and the Gold layer"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "How data moves through FMD",
+    "permalink": "/docs/explanation/load-flow"
+  },
+  "next": {
+    "title": "The Fabric Metadata-Driven Framework (FMD)",
+    "permalink": "/docs/"
+  }
+}

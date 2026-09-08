@@ -1,0 +1,27 @@
+{
+  "id": "reference/logging-and-auditing",
+  "title": "Logging and auditing reference",
+  "description": "Every pipeline, every copy activity and every notebook in FMD opens and closes an audit record in the configuration database. That trail is the framework's entire observability story: there is no semantic model, no alerting, no retention job, and nothing in FMD reads its own audit trail back.",
+  "source": "@site/docs/03-reference/02-logging-and-auditing.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/logging-and-auditing",
+  "permalink": "/docs/reference/logging-and-auditing",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/02-logging-and-auditing.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Logging and auditing reference"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Data model reference",
+    "permalink": "/docs/reference/data-model"
+  },
+  "next": {
+    "title": "Pipelines",
+    "permalink": "/docs/reference/pipelines"
+  }
+}

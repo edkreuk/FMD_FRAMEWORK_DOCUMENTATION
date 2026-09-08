@@ -1,0 +1,27 @@
+{
+  "id": "explanation/why-fmd",
+  "title": "Why FMD, and when not to use it",
+  "description": "A data platform that hand-builds one pipeline per source table is buying a linear cost curve. FMD is a metadata-driven ingestion framework for Microsoft Fabric that flattens it: you describe a table as rows in a configuration database, and a fixed set of pipelines and notebooks lands it, historises it and audits it.",
+  "source": "@site/docs/04-explanation/01-why-fmd.md",
+  "sourceDirName": "04-explanation",
+  "slug": "/explanation/why-fmd",
+  "permalink": "/docs/explanation/why-fmd",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/04-explanation/01-why-fmd.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Why FMD, and when not to use it"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Version differences: 2026.07 and main",
+    "permalink": "/docs/reference/version-differences"
+  },
+  "next": {
+    "title": "FMD in an enterprise data landscape",
+    "permalink": "/docs/explanation/enterprise-integration"
+  }
+}

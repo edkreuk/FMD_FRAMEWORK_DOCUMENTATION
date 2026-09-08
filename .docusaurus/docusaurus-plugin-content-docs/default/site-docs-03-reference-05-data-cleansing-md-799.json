@@ -1,0 +1,27 @@
+{
+  "id": "reference/data-cleansing",
+  "title": "Data cleansing",
+  "description": "Cleansing in FMD is a metadata-driven transformation step applied to a DataFrame in flight, between reading the source and writing the target. A rule is a JSON object stored in the configuration database against an entity; a function is a Python callable registered by name in a Spark-session-wide registry. The rule names the function, and the framework looks it up.",
+  "source": "@site/docs/03-reference/05-data-cleansing.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/data-cleansing",
+  "permalink": "/docs/reference/data-cleansing",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/05-data-cleansing.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "title": "Data cleansing"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Notebooks",
+    "permalink": "/docs/reference/notebooks"
+  },
+  "next": {
+    "title": "Variable libraries",
+    "permalink": "/docs/reference/variable-libraries"
+  }
+}

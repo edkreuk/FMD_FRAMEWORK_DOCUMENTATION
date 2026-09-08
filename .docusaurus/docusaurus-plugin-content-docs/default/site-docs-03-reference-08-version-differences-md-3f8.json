@@ -1,0 +1,27 @@
+{
+  "id": "reference/version-differences",
+  "title": "Version differences: 2026.07 and main",
+  "description": "This page is one place to answer a single question: does this behaviour depend on which version I deployed?",
+  "source": "@site/docs/03-reference/08-version-differences.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/version-differences",
+  "permalink": "/docs/reference/version-differences",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/08-version-differences.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "title": "Version differences: 2026.07 and main"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Supported sources",
+    "permalink": "/docs/reference/supported-sources"
+  },
+  "next": {
+    "title": "Why FMD, and when not to use it",
+    "permalink": "/docs/explanation/why-fmd"
+  }
+}

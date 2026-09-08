@@ -1,0 +1,27 @@
+{
+  "id": "how-to/upgrade-the-framework",
+  "title": "Upgrade the framework",
+  "description": "Re-running the setup notebook is the upgrade mechanism. There is no separate upgrade path, and there does not need to be one: the setup upserts every artefact, so running it again against an existing deployment replaces the framework's items and leaves your data and your metadata alone.",
+  "source": "@site/docs/02-how-to/08-upgrade-the-framework.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/upgrade-the-framework",
+  "permalink": "/docs/how-to/upgrade-the-framework",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/08-upgrade-the-framework.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "title": "Upgrade the framework"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create Materialized Lake Views",
+    "permalink": "/docs/how-to/create-materialized-lake-views"
+  },
+  "next": {
+    "title": "Operator cheat sheet",
+    "permalink": "/docs/how-to/operator-cheat-sheet"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "reference/notebooks",
+  "title": "Notebooks",
+  "description": "Everything FMD does to your data happens in a notebook. The pipelines move bytes",
+  "source": "@site/docs/03-reference/04-notebooks.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/notebooks",
+  "permalink": "/docs/reference/notebooks",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/04-notebooks.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "Notebooks"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Pipelines",
+    "permalink": "/docs/reference/pipelines"
+  },
+  "next": {
+    "title": "Data cleansing",
+    "permalink": "/docs/reference/data-cleansing"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "how-to/create-materialized-lake-views",
+  "title": "Create Materialized Lake Views",
+  "description": "A Materialized Lake View (MLV) is the persisted result of a SparkSQL SELECT, stored as a table in the lakehouse and refreshed by Fabric rather than by a query at read time. In FMD it is how a Business Domain turns raw historised Silver tables into the facts and dimensions its reports actually consume.",
+  "source": "@site/docs/02-how-to/07-create-materialized-lake-views.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/create-materialized-lake-views",
+  "permalink": "/docs/how-to/create-materialized-lake-views",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/07-create-materialized-lake-views.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "title": "Create Materialized Lake Views"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create OneLake shortcuts in Gold",
+    "permalink": "/docs/how-to/create-onelake-shortcuts-in-gold"
+  },
+  "next": {
+    "title": "Upgrade the framework",
+    "permalink": "/docs/how-to/upgrade-the-framework"
+  }
+}

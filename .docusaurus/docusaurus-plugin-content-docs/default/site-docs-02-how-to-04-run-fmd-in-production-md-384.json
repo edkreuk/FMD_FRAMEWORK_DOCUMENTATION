@@ -1,0 +1,27 @@
+{
+  "id": "how-to/run-fmd-in-production",
+  "title": "Run FMD in production",
+  "description": "The checklist before FMD carries a real load. What to configure, what to alert on, and the places where you have to watch because the framework cannot watch for itself.",
+  "source": "@site/docs/02-how-to/04-run-fmd-in-production.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/run-fmd-in-production",
+  "permalink": "/docs/how-to/run-fmd-in-production",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/04-run-fmd-in-production.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "Run FMD in production"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Schedule the load",
+    "permalink": "/docs/how-to/schedule-the-load"
+  },
+  "next": {
+    "title": "Diagnose a failed load",
+    "permalink": "/docs/how-to/diagnose-a-failed-load"
+  }
+}

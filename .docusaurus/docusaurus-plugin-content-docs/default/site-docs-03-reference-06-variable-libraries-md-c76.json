@@ -1,0 +1,27 @@
+{
+  "id": "reference/variable-libraries",
+  "title": "Variable libraries",
+  "description": "FMD keeps its environment-specific configuration in two Fabric Variable Libraries, VARFMD and VARCONFIG_FMD. Between them they hold seven variables. Nothing else in the framework is environment-dependent: workspace GUIDs, database names, and connection strings all resolve through these two libraries, which is what lets the same item definitions be deployed to Test, Acceptance, and Production unchanged.",
+  "source": "@site/docs/03-reference/06-variable-libraries.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/variable-libraries",
+  "permalink": "/docs/reference/variable-libraries",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/06-variable-libraries.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "title": "Variable libraries"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Data cleansing",
+    "permalink": "/docs/reference/data-cleansing"
+  },
+  "next": {
+    "title": "Supported sources",
+    "permalink": "/docs/reference/supported-sources"
+  }
+}

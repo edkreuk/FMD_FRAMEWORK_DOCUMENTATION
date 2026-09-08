@@ -1,0 +1,27 @@
+{
+  "id": "how-to/deploy",
+  "title": "Deploy FMD from nothing",
+  "description": "This page takes you from an empty Fabric tenant to a running FMD Framework: three (or five) workspaces, three lakehouses per environment, a configuration SQL database, and every notebook and pipeline the framework needs.",
+  "source": "@site/docs/02-how-to/01-deploy.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/deploy",
+  "permalink": "/docs/how-to/deploy",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/01-deploy.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Deploy FMD from nothing"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "intro",
+    "permalink": "/docs/intro"
+  },
+  "next": {
+    "title": "Register a new source entity",
+    "permalink": "/docs/how-to/add-an-entity"
+  }
+}

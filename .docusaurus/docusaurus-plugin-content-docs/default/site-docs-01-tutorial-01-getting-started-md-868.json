@@ -1,0 +1,23 @@
+{
+  "id": "tutorial/getting-started",
+  "title": "From an empty capacity to a loaded Silver table",
+  "description": "This page was executed, not written. Every timing and every value below comes from a real deployment into a real Fabric tenant on 2026-07-13, against the framework at commit 1ba7974.",
+  "source": "@site/docs/01-tutorial/01-getting-started.md",
+  "sourceDirName": "01-tutorial",
+  "slug": "/tutorial/getting-started",
+  "permalink": "/docs/tutorial/getting-started",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/01-tutorial/01-getting-started.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "From an empty capacity to a loaded Silver table"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "intro",
+    "permalink": "/docs/intro"
+  }
+}

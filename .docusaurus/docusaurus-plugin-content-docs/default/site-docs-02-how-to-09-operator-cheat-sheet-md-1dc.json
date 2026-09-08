@@ -1,0 +1,27 @@
+{
+  "id": "how-to/operator-cheat-sheet",
+  "title": "Operator cheat sheet",
+  "description": "The handful of queries and rules you reach for when a load looks wrong, on one page. Everything here is condensed: the fuller reasoning is in run FMD in production and diagnose a failed load, which each link is a pointer into.",
+  "source": "@site/docs/02-how-to/09-operator-cheat-sheet.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/operator-cheat-sheet",
+  "permalink": "/docs/how-to/operator-cheat-sheet",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/09-operator-cheat-sheet.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "title": "Operator cheat sheet"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Upgrade the framework",
+    "permalink": "/docs/how-to/upgrade-the-framework"
+  },
+  "next": {
+    "title": "Data model reference",
+    "permalink": "/docs/reference/data-model"
+  }
+}

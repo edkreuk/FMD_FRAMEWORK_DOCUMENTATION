@@ -1,0 +1,27 @@
+{
+  "id": "explanation/load-flow",
+  "title": "How data moves through FMD",
+  "description": "FMD moves a source table through three physical stops: a file in the Landing Zone, a current-state Delta table in Bronze, and a historised Delta table in Silver. Nothing about that path is hard-coded per table. Every step reads its instructions from a row in the configuration database, and every step writes back to that database what it did.",
+  "source": "@site/docs/04-explanation/04-load-flow.md",
+  "sourceDirName": "04-explanation",
+  "slug": "/explanation/load-flow",
+  "permalink": "/docs/explanation/load-flow",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/04-explanation/04-load-flow.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "How data moves through FMD"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Architecture",
+    "permalink": "/docs/explanation/architecture"
+  },
+  "next": {
+    "title": "Business Domains and the Gold layer",
+    "permalink": "/docs/explanation/business-domains"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "how-to/create-onelake-shortcuts-in-gold",
+  "title": "Create OneLake shortcuts in Gold",
+  "description": "A Business Domain's Gold lakehouse gets its data from Silver through OneLake shortcuts: references, not copies. The bytes stay in the Silver lakehouse in the core Data workspace, and the Gold lakehouse sees them as if they were its own tables.",
+  "source": "@site/docs/02-how-to/06-create-onelake-shortcuts-in-gold.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/create-onelake-shortcuts-in-gold",
+  "permalink": "/docs/how-to/create-onelake-shortcuts-in-gold",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/06-create-onelake-shortcuts-in-gold.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "title": "Create OneLake shortcuts in Gold"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Diagnose a failed load",
+    "permalink": "/docs/how-to/diagnose-a-failed-load"
+  },
+  "next": {
+    "title": "Create Materialized Lake Views",
+    "permalink": "/docs/how-to/create-materialized-lake-views"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "explanation/architecture",
+              "path": "/docs/explanation/architecture",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "explanation/business-domains",
+              "path": "/docs/explanation/business-domains",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "explanation/enterprise-integration",
+              "path": "/docs/explanation/enterprise-integration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "explanation/load-flow",
+              "path": "/docs/explanation/load-flow",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "explanation/why-fmd",
+              "path": "/docs/explanation/why-fmd",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/add-an-entity",
+              "path": "/docs/how-to/add-an-entity",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/create-materialized-lake-views",
+              "path": "/docs/how-to/create-materialized-lake-views",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/create-onelake-shortcuts-in-gold",
+              "path": "/docs/how-to/create-onelake-shortcuts-in-gold",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/deploy",
+              "path": "/docs/how-to/deploy",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/diagnose-a-failed-load",
+              "path": "/docs/how-to/diagnose-a-failed-load",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/operator-cheat-sheet",
+              "path": "/docs/how-to/operator-cheat-sheet",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/run-fmd-in-production",
+              "path": "/docs/how-to/run-fmd-in-production",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/schedule-the-load",
+              "path": "/docs/how-to/schedule-the-load",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "how-to/upgrade-the-framework",
+              "path": "/docs/how-to/upgrade-the-framework",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "index",
+              "path": "/docs/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/data-cleansing",
+              "path": "/docs/reference/data-cleansing",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/data-model",
+              "path": "/docs/reference/data-model",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/logging-and-auditing",
+              "path": "/docs/reference/logging-and-auditing",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/notebooks",
+              "path": "/docs/reference/notebooks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/pipelines",
+              "path": "/docs/reference/pipelines",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/supported-sources",
+              "path": "/docs/reference/supported-sources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/variable-libraries",
+              "path": "/docs/reference/variable-libraries",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/version-differences",
+              "path": "/docs/reference/version-differences",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial/getting-started",
+              "path": "/docs/tutorial/getting-started",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/tutorial/getting-started",
+                "label": "tutorial/getting-started"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

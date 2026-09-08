@@ -1,0 +1,27 @@
+{
+  "id": "how-to/diagnose-a-failed-load",
+  "title": "Diagnose a failed load",
+  "description": "Silver is empty, or stale, and nobody was paged. This page gets you from that to a named entity and a reason.",
+  "source": "@site/docs/02-how-to/05-diagnose-a-failed-load.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/diagnose-a-failed-load",
+  "permalink": "/docs/how-to/diagnose-a-failed-load",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/05-diagnose-a-failed-load.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "title": "Diagnose a failed load"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Run FMD in production",
+    "permalink": "/docs/how-to/run-fmd-in-production"
+  },
+  "next": {
+    "title": "Create OneLake shortcuts in Gold",
+    "permalink": "/docs/how-to/create-onelake-shortcuts-in-gold"
+  }
+}

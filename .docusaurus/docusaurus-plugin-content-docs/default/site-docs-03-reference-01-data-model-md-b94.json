@@ -1,0 +1,27 @@
+{
+  "id": "reference/data-model",
+  "title": "Data model reference",
+  "description": "This database is the framework. Everything else in FMD is generic all of it is reading and writing these 14 tables.",
+  "source": "@site/docs/03-reference/01-data-model.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/data-model",
+  "permalink": "/docs/reference/data-model",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/01-data-model.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Data model reference"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Operator cheat sheet",
+    "permalink": "/docs/how-to/operator-cheat-sheet"
+  },
+  "next": {
+    "title": "Logging and auditing reference",
+    "permalink": "/docs/reference/logging-and-auditing"
+  }
+}

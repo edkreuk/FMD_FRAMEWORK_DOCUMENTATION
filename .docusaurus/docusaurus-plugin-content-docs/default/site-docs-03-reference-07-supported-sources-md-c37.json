@@ -1,0 +1,27 @@
+{
+  "id": "reference/supported-sources",
+  "title": "Supported sources",
+  "description": "FMD loads from nine source families. The set is not open-ended: it is exactly the",
+  "source": "@site/docs/03-reference/07-supported-sources.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/supported-sources",
+  "permalink": "/docs/reference/supported-sources",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/07-supported-sources.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "title": "Supported sources"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Variable libraries",
+    "permalink": "/docs/reference/variable-libraries"
+  },
+  "next": {
+    "title": "Version differences: 2026.07 and main",
+    "permalink": "/docs/reference/version-differences"
+  }
+}

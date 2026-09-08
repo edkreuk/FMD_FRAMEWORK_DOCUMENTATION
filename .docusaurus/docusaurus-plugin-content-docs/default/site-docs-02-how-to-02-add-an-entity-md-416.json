@@ -1,0 +1,27 @@
+{
+  "id": "how-to/add-an-entity",
+  "title": "Register a new source entity",
+  "description": "FMD loads what its metadata tells it to load. To make the framework pick up a new table or file, you do not edit a pipeline: you insert metadata into the configuration database, and the pipelines find it on their next run.",
+  "source": "@site/docs/02-how-to/02-add-an-entity.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/add-an-entity",
+  "permalink": "/docs/how-to/add-an-entity",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/02-add-an-entity.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Register a new source entity"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Deploy FMD from nothing",
+    "permalink": "/docs/how-to/deploy"
+  },
+  "next": {
+    "title": "Schedule the load",
+    "permalink": "/docs/how-to/schedule-the-load"
+  }
+}

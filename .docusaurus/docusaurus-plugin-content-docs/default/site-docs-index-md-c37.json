@@ -1,0 +1,22 @@
+{
+  "id": "index",
+  "title": "The Fabric Metadata-Driven Framework (FMD)",
+  "description": "FMD is written and maintained by Erwin de Kreuk and published under the MIT licence at github.com/edkreuk/FMD_FRAMEWORK. This documentation is not his: we read his code and wrote down what it does. Where we found a defect we say so on the page, and we say which pull request fixes it. Where we were wrong, he was right.",
+  "source": "@site/docs/index.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/docs/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "The Fabric Metadata-Driven Framework (FMD)"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Business Domains and the Gold layer",
+    "permalink": "/docs/explanation/business-domains"
+  }
+}

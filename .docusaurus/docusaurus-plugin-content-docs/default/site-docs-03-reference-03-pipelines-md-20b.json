@@ -1,0 +1,27 @@
+{
+  "id": "reference/pipelines",
+  "title": "Pipelines",
+  "description": "FMD ships 25 Fabric Data Pipelines. None of them names a table, a column, or a",
+  "source": "@site/docs/03-reference/03-pipelines.md",
+  "sourceDirName": "03-reference",
+  "slug": "/reference/pipelines",
+  "permalink": "/docs/reference/pipelines",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/03-reference/03-pipelines.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Pipelines"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Logging and auditing reference",
+    "permalink": "/docs/reference/logging-and-auditing"
+  },
+  "next": {
+    "title": "Notebooks",
+    "permalink": "/docs/reference/notebooks"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "explanation/architecture",
+  "title": "Architecture",
+  "description": "Who can edit a pipeline, who can read a Silver table, and what has to be re-pointed when you promote to production are all decided by one thing in FMD: which workspace an artefact lives in.",
+  "source": "@site/docs/04-explanation/03-architecture.md",
+  "sourceDirName": "04-explanation",
+  "slug": "/explanation/architecture",
+  "permalink": "/docs/explanation/architecture",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/04-explanation/03-architecture.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Architecture"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "FMD in an enterprise data landscape",
+    "permalink": "/docs/explanation/enterprise-integration"
+  },
+  "next": {
+    "title": "How data moves through FMD",
+    "permalink": "/docs/explanation/load-flow"
+  }
+}

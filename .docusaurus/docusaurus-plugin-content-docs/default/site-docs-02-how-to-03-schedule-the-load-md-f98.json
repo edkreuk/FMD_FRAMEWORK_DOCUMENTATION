@@ -1,0 +1,27 @@
+{
+  "id": "how-to/schedule-the-load",
+  "title": "Schedule the load",
+  "description": "FMD ships no schedule and no trigger. Not one of the 25 pipelines carries a trigger definition, and there is no schedule artefact in the repository. Until you create one, PLFMDLOAD_ALL runs when somebody presses Run.",
+  "source": "@site/docs/02-how-to/03-schedule-the-load.md",
+  "sourceDirName": "02-how-to",
+  "slug": "/how-to/schedule-the-load",
+  "permalink": "/docs/how-to/schedule-the-load",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/02-how-to/03-schedule-the-load.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Schedule the load"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Register a new source entity",
+    "permalink": "/docs/how-to/add-an-entity"
+  },
+  "next": {
+    "title": "Run FMD in production",
+    "permalink": "/docs/how-to/run-fmd-in-production"
+  }
+}

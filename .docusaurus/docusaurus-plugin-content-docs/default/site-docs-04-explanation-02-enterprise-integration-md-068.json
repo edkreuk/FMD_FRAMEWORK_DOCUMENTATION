@@ -1,0 +1,27 @@
+{
+  "id": "explanation/enterprise-integration",
+  "title": "FMD in an enterprise data landscape",
+  "description": "FMD is one component in a platform, not a platform. This page places it: what feeds it, what consumes it, what it costs to run, what a governance review will ask of it, how it is secured, how it is promoted from development to production, and who has to get out of bed when it fails.",
+  "source": "@site/docs/04-explanation/02-enterprise-integration.md",
+  "sourceDirName": "04-explanation",
+  "slug": "/explanation/enterprise-integration",
+  "permalink": "/docs/explanation/enterprise-integration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/04-explanation/02-enterprise-integration.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "FMD in an enterprise data landscape"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Why FMD, and when not to use it",
+    "permalink": "/docs/explanation/why-fmd"
+  },
+  "next": {
+    "title": "Architecture",
+    "permalink": "/docs/explanation/architecture"
+  }
+}

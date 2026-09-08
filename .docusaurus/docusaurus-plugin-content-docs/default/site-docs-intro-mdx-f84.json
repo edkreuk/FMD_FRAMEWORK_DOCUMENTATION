@@ -1,0 +1,27 @@
+{
+  "id": "intro",
+  "title": "intro",
+  "description": "---",
+  "source": "@site/docs/intro.mdx",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/edkreuk/FMD_FRAMEWORK/tree/main/docs/docs/intro.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "From an empty capacity to a loaded Silver table",
+    "permalink": "/docs/tutorial/getting-started"
+  },
+  "next": {
+    "title": "Deploy FMD from nothing",
+    "permalink": "/docs/how-to/deploy"
+  }
+}
