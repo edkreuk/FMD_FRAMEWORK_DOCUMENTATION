@@ -303,7 +303,7 @@ Before you re-run anything, check three things:
 
 1. **Is the entity still active?** `SELECT IsActive FROM integration.LandingzoneEntity WHERE LandingzoneEntityId = @EntityId`. A `0` means the load skipped it deliberately.
 2. **Did the source actually get fixed?** The landing zone will land another empty or malformed file and mark it processed.
-3. **Is this an incremental entity with a moved watermark?** See [the one that can lose data](#the-one-that-can-lose-data). Re-running does not recover that case, and running it again can hide it.
+3. **Is this an incremental entity with a moved watermark?** See [the one that could lose data, serialized on `main`](#the-one-that-could-lose-data-serialized-on-main). Re-running does not recover that case, and running it again can hide it.
 
 ### The trap: a missing file is marked as done
 
