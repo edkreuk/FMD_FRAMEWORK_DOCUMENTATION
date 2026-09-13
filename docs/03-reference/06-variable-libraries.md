@@ -185,16 +185,16 @@ The upstream *Variable Library* wiki page lists a different set of variables fro
 
 | Wiki claims `VAR_FMD` supports | In `VAR_FMD/variables.json`? |
 | --- | --- |
-| `key_vault_uri_name` | yes |
-| `key_vault_tenant_id` | **no** |
-| `key_vault_client_id` | **no** |
-| `key_vault_client_secret` | **no** |
+| `<key_vault_uri_name>` | yes |
+| `<key_vault_tenant_id>` | **no** |
+| `<key_vault_client_id>` | **no** |
+| `<key_vault_client_secret>` | **no** |
 | `lakehouse_schema_enabled` | yes |
-| *(not mentioned)* `purview_account_name` | **yes, present in the code** |
+| *(not mentioned)* `<purview_account_name>` | **yes, present in the code** |
 
 So the wiki over-reports by three and under-reports by one, and in both directions it is simply stale.
 
-The three `key_vault_*` variables did once exist and were **deliberately removed**, in the upstream commit titled *"consider using managed identity or key vault for client secret instead of variable library"*, which deleted them from `variables.json` in the same change that removed the corresponding deployment config. The reasoning is sound and worth understanding rather than working around: a Fabric Variable Library is a plain-text, source-controlled item, so a `key_vault_client_secret` variable would put a client secret into git. The framework now keeps only the *address* of the vault in a variable (`key_vault_uri_name`) and resolves the secrets themselves at run time. The Purview notebook reads them from Key Vault under the fixed secret names `tenantid`, `sp-fabric-purview-deployment-appid`, and `sp-fabric-purview-deployment-secret`.
+The three `key_vault_*` variables did once exist and were **deliberately removed**, in the upstream commit titled *"consider using managed identity or key vault for client secret instead of variable library"*, which deleted them from `variables.json` in the same change that removed the corresponding deployment config. The reasoning is sound and worth understanding rather than working around: a Fabric Variable Library is a plain-text, source-controlled item, so a `<key_vault_client_secret>` variable would put a client secret into git. The framework now keeps only the *address* of the vault in a variable (`<key_vault_uri_name>`) and resolves the secrets themselves at run time. The Purview notebook reads them from Key Vault under the fixed secret names `<tenantid>`, `<sp-fabric-purview-deployment-appid>`, and `<sp-fabric-purview-deployment-secret>`.
 
 **Do not re-add them.** If you need another credential, follow the same pattern: put the secret in Key Vault, and reference it by a secret name in the consuming notebook.
 

@@ -166,7 +166,7 @@ key_vault_uri_name = 'val_key_vault_uri_name'
 purview_account_name = 'val_purview_account_name'
 ```
 
-These are placeholders for future use. The deployment guide lists four Key Vault variables (`key_vault_uri_name`, `key_vault_tenant_id`, `key_vault_client_id`, `key_vault_client_secret`); the notebook has only `key_vault_uri_name` and, instead of the other three, `purview_account_name`. Follow the notebook.
+These are placeholders for future use. `<key_vault_uri_name>` and `<purview_account_name>` are the values to replace in the code above. Follow the notebook.
 
 #### Capacity settings (cell 7, under the heading *Capacity configuration*)
 
