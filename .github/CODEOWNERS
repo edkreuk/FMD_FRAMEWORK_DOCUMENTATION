@@ -1,5 +1,8 @@
-* @edkreuk
+# Default reviewers
+* @edkreuk @TheTrustedAdvisor
 
-/docs/ @edkreuk
+# Documentation
+/docs/ @edkreuk @TheTrustedAdvisor
 
-/.github/ @edkreuk
+# GitHub workflows
+/.github/ @edkreuk @TheTrustedAdvisor
