@@ -16,7 +16,7 @@ FMD ships as a set of Fabric items, deployed by a setup notebook into your own w
 
 | Part | Count | What it is |
 |---|---|---|
-| Configuration database | 1 | A Fabric SQL Database with three schemas: `integration` (what to load), `execution` (what to load next, and how far we got), `logging` (what happened). It holds 14 tables, 27 stored procedures, and 3 views. |
+| Configuration database | 1 | A Fabric SQL Database with three schemas: `integration` (what to load), `execution` (what to load next, and how far we got), `logging` (what happened). It holds 16 tables, 30 stored procedures, and 3 views. |
 | Data pipelines | 25 | `PL_FMD_LOAD_ALL` and its three layer pipelines, plus 9 source-specific command pipelines, 10 copy pipelines, and 2 tooling pipelines. |
 | Spark notebooks | 11 | The transformation and orchestration logic: Landing Zone to Bronze, Bronze to Silver, parallel execution, data cleansing, shared utility functions. The eleventh, `NB_FMD_LOAD_DEMO_DATA`, was added on `main` ([#268](https://github.com/edkreuk/FMD_FRAMEWORK/pull/268)); `2026.07` ships 10. |
 | Lakehouses | 3 | `LH_DATA_LANDINGZONE`, `LH_BRONZE_LAYER`, `LH_SILVER_LAYER`. |
@@ -122,10 +122,11 @@ The how-to pages are in the order an operator meets them: deploy it, make it loa
 - [Architecture](04-explanation/03-architecture.md): the workspace split, the medallion layers, and how a configuration row becomes a pipeline run.
 - [Load flow](04-explanation/04-load-flow.md): what happens on a single run, activity by activity, including the watermark and the SCD Type 2 merge.
 - [Business domains](04-explanation/05-business-domains.md): what sits on top of Silver, and what Gold means here.
+- [Schedule groups](04-explanation/06-schedule-groups.md): how group membership filters landing-zone extraction, and how to operate schedules for different cadences.
 
 ## About this documentation
 
-**Written from the code.** Every claim on these pages is checked against `github.com/edkreuk/FMD_FRAMEWORK` at commit `b5fb08e`, and every page cites the file it came from. Where the framework and Microsoft Learn disagree about what Fabric does, the page says so and Learn wins. Where a page records a defect, it states the mechanism, gives you the workaround, and links the pull request that fixes it upstream.
+**Written from the code.** The baseline documentation is checked against `github.com/edkreuk/FMD_FRAMEWORK` at commit `b5fb08e`; schedule-group behavior and its related data-model and pipeline notes are checked against upstream `main` at [`487e6d1`](https://github.com/edkreuk/FMD_FRAMEWORK/commit/487e6d18e2e6535bb886bc113d723ee5c3a8bd5d). Pages cite their sources. Where the framework and Microsoft Learn disagree about what Fabric does, the page says so and Learn wins. Where a page records a defect, it states the mechanism, gives you the workaround, and links the pull request that fixes it upstream.
 
 **Two things to know if you want to contribute to FMD itself.**
 

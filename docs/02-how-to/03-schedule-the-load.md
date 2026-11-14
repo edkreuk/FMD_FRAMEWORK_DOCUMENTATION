@@ -12,11 +12,11 @@ Alerting is a separate job and lives in the [production checklist](./04-run-fmd-
 
 ---
 
-## 1. Create the schedule, and set the one parameter
+## 1. Create the schedule, and set its parameters
 
 Open `PL_FMD_LOAD_ALL`, and on the **Home** tab choose **Schedule → Add Schedule**. Fabric asks for a frequency, a time zone, a start date and an end date. It also takes the pipeline's parameter values, either as a direct value or from a variable library, and the parameter names must match the pipeline's exactly: a mismatched name is ignored at run time rather than rejected.
 
-`PL_FMD_LOAD_ALL` takes exactly one parameter, `Data_WorkspaceGuid`, and every layer pipeline resolves its work list from `execution.vw_LoadSourceToLandingzone` filtered on it.
+`PL_FMD_LOAD_ALL` takes `Data_WorkspaceGuid` and the optional `ScheduleGroupName` parameter, which defaults to `Default`. The workspace selects the target data environment. The group filters the landing-zone work list; Bronze and Silver use shared pending-work queues and are not isolated by group. See [Schedule groups](../04-explanation/06-schedule-groups.md) for the full behavior and setup.
 
 **The deployed default is already yours.** In the repository the parameter carries `40e27fdc-775a-4ee2-84d5-48893c92d7cc`, which is a placeholder: `config/item_config.yaml` registers it as `workspaces.workspace_data`, and the setup rewrites every occurrence to the data workspace of the environment it is deploying into. We read the definition back out of a live deployment to confirm it, and the default was our own `DATA (D)` workspace.
 
@@ -32,7 +32,7 @@ A schedule created on the pipeline in `CODE (P)` inherits production's data work
 
 > **Fabric forces you to pick an end date. There is no open-ended schedule.** Set it far into the future, for example `01/01/2099 12:00 AM`, or the load stops on a date you chose months ago and forgot. An expired schedule looks exactly like a disabled account: no run, no row in `logging`, no failure, and Silver quietly stops advancing. It is the first thing to check when the absence alert in section 3 fires. ([Learn](https://learn.microsoft.com/fabric/data-factory/pipeline-runs#scheduled-pipeline-runs))
 
-You can attach up to 20 schedules to one pipeline, which is how you give a nightly full load and an hourly incremental load different `Data_WorkspaceGuid` values or different frequencies.
+You can attach up to 20 schedules to one pipeline. Use `ScheduleGroupName` to select different sets of landing-zone entities for different frequencies; for example, `Default` can run nightly and `Hourly` can run hourly. Adding an entity to `Hourly` does not remove its automatic `Default` membership, so remove that membership if you want the entity excluded from the nightly schedule. Schedule groups do not create Fabric schedules automatically.
 
 ---
 

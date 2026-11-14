@@ -4,21 +4,21 @@ title: "Data model reference"
 
 # Data model reference
 
-This database is the framework. Everything else in FMD is generic: the same 25 pipelines and 11 notebooks run whether you load 2 tables or 200. What changes is the rows in here. Onboarding a source, choosing full or incremental, attaching a cleansing rule, tracing a failed run: all of it is reading and writing these 14 tables.
+This database is the framework. Everything else in FMD is generic: the same 25 pipelines and 11 notebooks run whether you load 2 tables or 200. What changes is the rows in here. Onboarding a source, choosing full or incremental, attaching a cleansing rule, tracing a failed run, and assigning entities to schedule groups: all of it is reading and writing these 16 tables.
 
 So this is the page you will keep open. It is a single Fabric SQL Database with three schemas, and the split tells you where to look:
 
 > **What it is called in your tenant.** The docs and the repo call it `SQL_FMD_FRAMEWORK`, which is the name of the SQL project and of the committed `.dacpac`. The database the setup notebook actually creates is named `'SQL_' + domain_name + '_FRAMEWORK'` (cell 18), so with the default `domain_name` of `INTEGRATION` you will be looking for **`SQL_INTEGRATION_FRAMEWORK`**. Same database, different name in the portal.
 
-- **`integration`** is what you declare. The sources you registered and the entities you want loaded. You write here, through the `sp_Upsert*` procedures. 8 tables, and the only three foreign keys in the database.
+- **`integration`** is what you declare. The sources you registered and the entities you want loaded. You write here, through the `sp_Upsert*` procedures. 10 tables, including the schedule-group catalogue and membership, and all five foreign keys in the database.
 - **`execution`** is what happens next. The work list each pipeline reads, the `IsProcessed` flags that drive it, and the `LastLoadValue` watermark that makes an incremental load incremental. The framework writes here; you mostly read it. 3 tables and 3 views.
 - **`logging`** is what happened. Every pipeline, notebook and copy activity writes a start, end and failure record. This is your audit trail and your first stop when a load fails. 3 tables. Note before you write a query: pipelines and copy activities correlate on `PipelineRunGuid`, and since [#251](https://github.com/edkreuk/FMD_FRAMEWORK/pull/251) **a notebook joins its layer pipeline on `PipelineRunGuid` too** (`TriggerGuid` correlates it as well). Up to and including `2026.07` a notebook's `PipelineRunGuid` was a synthetic `uuid4()`, so `TriggerGuid` was then the only usable notebook join. See [logging and auditing](./02-logging-and-auditing.md).
 
-Below: every column of every table, with its type, nullability and keys, then the 27 stored procedures and the 3 views.
+Below: every column of every table, with its type, nullability and keys, then the 30 stored procedures and the 3 views.
 
 ## The three schemas
 
-**`integration` is the metadata you register.** It is the declarative catalogue: which connections exist, which data sources sit behind them, which workspaces and lakehouses the framework writes into, and which entities to load through the landing zone, bronze, and silver layers. Nothing here changes as a side effect of a pipeline run. You write it once, through the `sp_Upsert*` procedures, and the pipelines read it. It holds 8 of the 14 tables and all 3 of the database's foreign keys.
+**`integration` is the metadata you register.** It is the declarative catalogue: which connections exist, which data sources sit behind them, which workspaces and lakehouses the framework writes into, which entities to load through the landing zone, bronze, and silver layers, and how entities are assigned to schedule groups. Nothing here changes as a side effect of a pipeline run. You write it through the `sp_Upsert*` procedures, and the pipelines read it. It holds 10 of the 16 tables and all five of the database's foreign keys.
 
 **`execution` is runtime state.** Three tables that pipelines write during a run: the incremental-load watermark per landing-zone entity, and two queue tables recording which files and which bronze tables have been produced but not yet consumed downstream. The `IsProcessed` flag on the two queue tables is the handover signal between layers. This schema also holds the three views that assemble the parameter payloads the pipelines and notebooks actually execute.
 
@@ -26,17 +26,19 @@ Below: every column of every table, with its type, nullability and keys, then th
 
 > **Upstream discrepancy:** the wiki's `Data-Observability.md` tells readers the log tables are `audit.PipelineExecution`, `audit.CopyActivityExecution`, and `audit.NotebookExecution`. There is no `audit` schema in the database. The schema is `logging`. The three table names are otherwise correct.
 
-**All 14 tables are mirrored into OneLake, whether you want it or not.** `SQL_FMD_FRAMEWORK` is a Fabric SQL Database, and mirroring for a Fabric SQL Database is automatic on creation, always on, and cannot be turned off; every supported table is mirrored with no option to skip. So the entire configuration database, the `logging` heaps included, is continuously replicated into OneLake as Delta and is readable from Spark, from the SQL analytics endpoint and from a Direct Lake semantic model with no work on your part. Two consequences worth carrying into any design: the **three `execution` views are not mirrored**, because views never are, so anything built on the OneLake copy must re-implement their joins; and one column, `execution.LandingzoneEntityLastLoadValue.LastLoadDatetime`, is a `DATETIME2(7)` and loses its seventh digit in the replica. See [logging and auditing](./02-logging-and-auditing.md) for what this buys you when you build monitoring.
+**All 16 tables are mirrored into OneLake, whether you want it or not.** `SQL_FMD_FRAMEWORK` is a Fabric SQL Database, and mirroring for a Fabric SQL Database is automatic on creation, always on, and cannot be turned off; every supported table is mirrored with no option to skip. So the entire configuration database, the `logging` heaps included, is continuously replicated into OneLake as Delta and is readable from Spark, from the SQL analytics endpoint and from a Direct Lake semantic model with no work on your part. Two consequences worth carrying into any design: the **three `execution` views are not mirrored**, because views never are, so anything built on the OneLake copy must re-implement their joins; and one column, `execution.LandingzoneEntityLastLoadValue.LastLoadDatetime`, is a `DATETIME2(7)` and loses its seventh digit in the replica. See [logging and auditing](./02-logging-and-auditing.md) for what this buys you when you build monitoring.
 
-## Referential integrity: three foreign keys, all in `integration`
+## Referential integrity: five foreign keys, all in `integration`
 
-The database declares exactly three foreign keys, and all three are inside `integration`:
+The database declares exactly five foreign keys, and all five are inside `integration`:
 
 | Child | Column | Parent | Column |
 |---|---|---|---|
 | `integration.BronzeLayerEntity` | `LandingzoneEntityId` | `integration.LandingzoneEntity` | `LandingzoneEntityId` |
 | `integration.SilverLayerEntity` | `BronzeLayerEntityId` | `integration.BronzeLayerEntity` | `BronzeLayerEntityId` |
 | `integration.Lakehouse` | `WorkspaceGuid` | `integration.Workspace` | `WorkspaceGuid` |
+| `integration.ScheduleGroupEntity` | `ScheduleGroupId` | `integration.ScheduleGroup` | `ScheduleGroupId` |
+| `integration.ScheduleGroupEntity` | `LandingzoneEntityId` | `integration.LandingzoneEntity` | `LandingzoneEntityId` |
 
 Everything else that looks like a relationship is a relationship by convention only, enforced by application code rather than by the database:
 
@@ -45,7 +47,7 @@ Everything else that looks like a relationship is a relationship by convention o
 
 This is a real property of the design, not an omission in this document. It means the database will not catch a bad `EntityId`; only the joins in the views will, by silently returning no rows.
 
-> **Upstream discrepancy:** the wiki describes columns such as `DataSource.ConnectionId` and `LandingzoneEntity.LakehouseId` as "Reference to the associated connection" / "Reference to the lakehouse", which reads as though referential integrity is enforced. It is not, for any column other than the three foreign keys above.
+> **Upstream discrepancy:** the wiki describes columns such as `DataSource.ConnectionId` and `LandingzoneEntity.LakehouseId` as "Reference to the associated connection" / "Reference to the lakehouse", which reads as though referential integrity is enforced. It is not, for any column other than the five foreign keys above.
 
 Note also the type mismatch across the convention boundary: `integration.BronzeLayerEntity.BronzeLayerEntityId` and `integration.LandingzoneEntity.LandingzoneEntityId` are `BIGINT`, but `logging.*.EntityId` is `INT`. Entity ids beyond the `INT` range would not round-trip into the log tables.
 
@@ -53,13 +55,15 @@ Note also the type mismatch across the convention boundary: `integration.BronzeL
 
 ## `integration`
 
-Eight tables. The medallion chain (`LandingzoneEntity` to `BronzeLayerEntity` to `SilverLayerEntity`) is the only place foreign keys enforce the shape.
+Ten tables. The medallion chain (`LandingzoneEntity` to `BronzeLayerEntity` to `SilverLayerEntity`) and schedule-group membership are enforced by foreign keys.
 
 ```mermaid
 erDiagram
     Workspace ||--o{ Lakehouse : "FK on WorkspaceGuid"
     LandingzoneEntity ||--o{ BronzeLayerEntity : "FK on LandingzoneEntityId"
     BronzeLayerEntity ||--o{ SilverLayerEntity : "FK on BronzeLayerEntityId"
+    ScheduleGroup ||--o{ ScheduleGroupEntity : "FK on ScheduleGroupId"
+    LandingzoneEntity ||--o{ ScheduleGroupEntity : "FK on LandingzoneEntityId"
     Connection ||..o{ DataSource : "by convention, no FK"
     DataSource ||..o{ LandingzoneEntity : "by convention, no FK"
     Lakehouse ||..o{ LandingzoneEntity : "by convention, no FK"
@@ -119,6 +123,14 @@ erDiagram
         nvarchar SourceCustomSelect
         varchar CustomNotebookName
     }
+    ScheduleGroup {
+        int ScheduleGroupId PK
+        nvarchar ScheduleGroupName UK
+    }
+    ScheduleGroupEntity {
+        int ScheduleGroupId PK, FK
+        bigint LandingzoneEntityId PK, FK
+    }
     BronzeLayerEntity {
         bigint BronzeLayerEntityId PK
         bigint LandingzoneEntityId FK
@@ -144,7 +156,7 @@ erDiagram
 
 ### `integration.Workspace`
 
-The Fabric workspaces the framework knows about. It is the only parent of a declared foreign key, and the only table in `integration` with no `IsActive` column. (Seven of the 14 tables have no `IsActive`: `Workspace`, and all three `execution` and all three `logging` tables.)
+The Fabric workspaces the framework knows about. It is a parent of the declared `Lakehouse.WorkspaceGuid` foreign key, and the only table in `integration` with no `IsActive` column. (Seven of the 16 tables have no `IsActive`: `Workspace`, and all three `execution` and all three `logging` tables.)
 
 | Column | Type | Null | Key |
 |---|---|---|---|
@@ -235,6 +247,26 @@ The unique constraint is on (`SourceSchema`, `SourceName`, `DataSourceId`, `Lake
 `SourceCustomSelect` is intended to override the generated extract query, letting you register a projection or a join instead of taking the whole table. It is wired in only halfway. The registration path writes it (`sp_UpsertLandingzoneEntity` and `sp_UpsertLandingzoneBronzeSilver` both accept `@SourceCustomSelect`, and the `PL_TOOLING_POST_ASQL_TO_FMD` pipeline passes it through), but nothing on the read side consumes it: `vw_LoadSourceToLandingzone` builds `SourceDataRetrieval` as `SELECT * FROM <schema>.<table>` unconditionally, and no notebook references the column. **Setting `SourceCustomSelect` today therefore has no effect on what is extracted.** To restrict what a landing-zone entity pulls, narrow the source object itself (a view on the source system) rather than relying on this column.
 
 `CustomNotebookName`, by contrast, is fully wired: `vw_LoadSourceToLandingzone` selects it, and `NB_FMD_PROCESSING_LANDINGZONE_MAIN` dispatches to the named notebook, which is how `PL_FMD_LDZ_COPY_FROM_CUSTOM_NB` handles sources the standard copy activity cannot read. Leave it `NULL` for the standard path.
+
+New landing-zone entities are automatically added to the `Default` schedule group. The insert trigger handles direct and multi-row inserts, and the registration procedures maintain the same membership. Existing entities are initialized during deployment; see [Schedule groups](../04-explanation/06-schedule-groups.md).
+
+### `integration.ScheduleGroup`
+
+One row per named landing-zone extraction group. `ScheduleGroupName` is unique; the built-in `Default` group is created during initialization and cannot be renamed.
+
+| Column | Type | Null | Key |
+|---|---|---|---|
+| `ScheduleGroupId` | `INT` IDENTITY(1,1) | NOT NULL | PK `PK_integration_ScheduleGroup` |
+| `ScheduleGroupName` | `NVARCHAR(100)` | NOT NULL | UNIQUE `UC_integration_ScheduleGroup` |
+
+### `integration.ScheduleGroupEntity`
+
+Membership between a schedule group and a landing-zone entity. A landing-zone entity may be a member of multiple groups; the composite primary key prevents duplicate membership in the same group. The two columns are also the table's foreign keys.
+
+| Column | Type | Null | Key |
+|---|---|---|---|
+| `ScheduleGroupId` | `INT` | NOT NULL | PK, FK to `integration.ScheduleGroup(ScheduleGroupId)` |
+| `LandingzoneEntityId` | `BIGINT` | NOT NULL | PK, FK to `integration.LandingzoneEntity(LandingzoneEntityId)` |
 
 ### `integration.BronzeLayerEntity`
 
@@ -544,7 +576,7 @@ It is the only view that propagates `CleansingRules`, and it strips carriage ret
 
 ## Stored procedures
 
-27 procedures. The `sp_Get*` procedures in `integration` are lookups that return a single id; the `sp_Upsert*` procedures are the registration API; the two `sp_Get*LayerEntity` procedures in `execution` build the notebook parameter payloads; the `logging` procedures are pure inserts.
+30 procedures. The `sp_Get*` procedures in `integration` are lookups that return a single id; the `sp_Upsert*` procedures are the registration API; `sp_InitializeDefaultScheduleGroup` initializes default memberships; the two `sp_Get*LayerEntity` procedures in `execution` build the notebook parameter payloads; the `logging` procedures are pure inserts.
 
 Call these with parameterised `pyodbc`, never with interpolated SQL.
 
@@ -714,8 +746,8 @@ Recorded here so a reader who has seen the wiki knows which to trust. In every c
 | Wiki claim | What the SQL says |
 |---|---|
 | `Data-Observability.md`: log tables are `audit.PipelineExecution`, `audit.CopyActivityExecution`, `audit.NotebookExecution`. | There is no `audit` schema. The schema is `logging`. The table names are correct. |
-| `Data-Model.md` describes `DataSource.ConnectionId`, `LandingzoneEntity.DataSourceId`, `LandingzoneEntity.LakehouseId`, `BronzeLayerEntity.LakehouseId`, `SilverLayerEntity.LakehouseId`, and `Pipeline.WorkspaceGuid` as references to their parents. | None of these carries a foreign key. Only three foreign keys exist in the database, all in `integration`. |
-| `Data-Model.md` documents the `integration` schema only, under the headings "Integration schema" and "Entity tables". | The database has three schemas and 14 tables. The 3 `execution` tables, the 3 `logging` tables, all 3 views, and all 27 procedures are absent from the wiki's data model page. |
+| `Data-Model.md` describes `DataSource.ConnectionId`, `LandingzoneEntity.DataSourceId`, `LandingzoneEntity.LakehouseId`, `BronzeLayerEntity.LakehouseId`, `SilverLayerEntity.LakehouseId`, and `Pipeline.WorkspaceGuid` as references to their parents. | None of these carries a foreign key. Five foreign keys exist in the database, all in `integration`. |
+| `Data-Model.md` documents the `integration` schema only, under the headings "Integration schema" and "Entity tables". | The database has three schemas and 16 tables. The 3 `execution` tables, the 3 `logging` tables, all 3 views, and all 30 procedures are absent from the wiki's data model page. |
 | `Data-Model.md` lists Oracle (`ORACLE`) as a connection type. | `vw_LoadSourceToLandingzone` tests `WHEN C.[Type] IN ('SQL')` and has no other branch. An Oracle connection takes the `ELSE` path for `LastLoadValue`. |
 | `Data-Model.md` does not mention the unique constraints beyond the GUID columns. | Nine unique constraints exist, including composite ones on `DataSource`, `LandingzoneEntity`, `BronzeLayerEntity`, and `SilverLayerEntity` that govern what "the same entity" means for the upsert procedures. |
 
@@ -727,6 +759,7 @@ Source: `src/Config_Database/integration/{Tables,StoredProcedures}/*.sql` @ `1ba
 Source: `src/Config_Database/execution/{Tables,Views,StoredProcedures}/*.sql` @ `1ba7974`
 Source: `src/Config_Database/logging/{Tables,StoredProcedures}/*.sql` @ `1ba7974`
 Source: `src/SQL_FMD_FRAMEWORK.SQLDatabase/SQL_FMD_FRAMEWORK.dacpac` (`model.xml`) @ `1ba7974`
+Schedule-group tables and procedures: `src/Config_Database/integration/{Tables,StoredProcedures,Triggers}/*.sql` @ [487e6d1](https://github.com/edkreuk/FMD_FRAMEWORK/commit/487e6d18e2e6535bb886bc113d723ee5c3a8bd5d)
 Compared against: wiki `Data-Model.md`, `Data-Observability.md` @ `69305fd`
 
 Platform: [Mirroring Fabric SQL database](https://learn.microsoft.com/fabric/database/sql/mirroring-overview) (automatic on creation, always on, all supported tables) and [its limitations](https://learn.microsoft.com/fabric/database/sql/mirroring-limitations) (views and stored procedures are not mirrored; `datetime2(7)` loses its seventh fractional digit in Delta)
