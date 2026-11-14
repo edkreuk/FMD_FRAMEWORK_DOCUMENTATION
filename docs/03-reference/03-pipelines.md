@@ -391,7 +391,7 @@ That is 4 orchestration + 9 command + 10 copy + 2 tooling = 25.
 
 ## Cross-cutting facts
 
-- **Every** pipeline in the load path takes `Data_WorkspaceGuid` and nothing else. The whole configuration is looked up from it. Several pipelines (`PL_FMD_LOAD_ALL`, `PL_FMD_LOAD_LANDINGZONE`, `PL_TOOLING_POST_ASQL_TO_FMD`) carry a `defaultValue` of `40e27fdc-775a-4ee2-84d5-48893c92d7cc`. **That is a placeholder, not a leak.** `config/item_config.yaml` registers it as `workspaces.workspace_data`, and `replace_ids_and_mark_inactive` rewrites every occurrence to the data workspace of the environment being deployed. We read the definition back out of a live deployment: the default arrived as our own data workspace.
+- Every pipeline in the load path takes `Data_WorkspaceGuid`, which identifies the target data workspace. Current `main` also defines the optional string parameter `ScheduleGroupName` (default `Default`) on Fabric pipelines other than `PL_FMD_LOAD_BRONZE` and `PL_FMD_LOAD_SILVER`. The group filters landing-zone entity lookups; Bronze and Silver continue consuming shared queues. It is not forwarded to external Azure Data Factory pipelines. See [Schedule groups](../04-explanation/06-schedule-groups.md). Several pipelines (`PL_FMD_LOAD_ALL`, `PL_FMD_LOAD_LANDINGZONE`, `PL_TOOLING_POST_ASQL_TO_FMD`) carry a `defaultValue` of `40e27fdc-775a-4ee2-84d5-48893c92d7cc`. **That is a placeholder, not a leak.** `config/item_config.yaml` registers it as `workspaces.workspace_data`, and `replace_ids_and_mark_inactive` rewrites every occurrence to the data workspace of the environment being deployed. We read the definition back out of a live deployment: the default arrived as our own data workspace.
 
   `PL_FMD_TOOLING_LOAD_TO_PURVIEW` was the exception. It declared the same `Data_WorkspaceGuid` parameter but defaulted it to `3e43b742-3e41-4ec0-a414-03adf83c08e7`, which appeared in no mapping and was therefore **never substituted**; the same GUID was the default `SourceWorkspaceId` in `NB_FMD_FABRIC_PURVIEW_LINEAGE_TABLE_COLUMN_EXTRACTOR`. Pointing it at the placeholder the other three use was merged upstream as [#261](https://github.com/edkreuk/FMD_FRAMEWORK/pull/261).
 
@@ -419,6 +419,7 @@ say why, so neither does this page.
 
 Sources:
 
+- Schedule-group parameter, view filtering, and forwarding exceptions: `Readme.md`, `src/PL_FMD_*.DataPipeline/pipeline-content.json`, and `src/Config_Database/execution/Views/vw_LoadSourceToLandingzone.sql` @ [487e6d1](https://github.com/edkreuk/FMD_FRAMEWORK/commit/487e6d18e2e6535bb886bc113d723ee5c3a8bd5d)
 - `src/PL_FMD_LOAD_ALL.DataPipeline/pipeline-content.json` @ b5fb08e
 - `src/PL_FMD_LOAD_LANDINGZONE.DataPipeline/pipeline-content.json` @ b5fb08e
 - `src/PL_FMD_LOAD_BRONZE.DataPipeline/pipeline-content.json` @ b5fb08e
